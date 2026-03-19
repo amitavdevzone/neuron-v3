@@ -43,6 +43,17 @@ return [
 
     'openai' => [
         'key' => env('OPENAI_API_KEY'),
+        'model' => env('OPENAI_MODEL', 'gpt-4o-mini'),
+    ],
+
+    'openrouter' => [
+        'key' => env('OPENROUTER_API_KEY'),
+        'model' => env('OPENROUTER_MODEL', 'openai/gpt-4o-mini'),
+        'base_uri' => env('OPENROUTER_BASE_URI', 'https://openrouter.ai/api/v1'),
+    ],
+
+    'ai' => [
+        'provider' => env('AI_PROVIDER', 'openai'),
     ],
 
 ];

@@ -6,16 +6,12 @@ use App\Neuron\Tools\FetchTrendingRepositoriesTool;
 use NeuronAI\Agent\Agent;
 use NeuronAI\Agent\SystemPrompt;
 use NeuronAI\Providers\AIProviderInterface;
-use NeuronAI\Providers\OpenAI\OpenAI;
 
 class TrendingAgent extends Agent
 {
     protected function provider(): AIProviderInterface
     {
-        return new OpenAI(
-            key: (string) config('services.openai.key'),
-            model: 'gpt-4o-mini',
-        );
+        return AIProviderFactory::make();
     }
 
     protected function instructions(): string
