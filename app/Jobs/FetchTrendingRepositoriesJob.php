@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Actions\UpsertDailyTrending;
 use App\Actions\UpsertTrendingRepositories;
 use App\Services\GitHubService;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,11 +28,15 @@ class FetchTrendingRepositoriesJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(GitHubService $gitHubService, UpsertTrendingRepositories $upsertTrendingRepositories): void
-    {
+    public function handle(
+        GitHubService $gitHubService,
+        UpsertTrendingRepositories $upsertTrendingRepositories,
+        UpsertDailyTrending $upsertDailyTrending
+    ): void {
         $repositories = $gitHubService->fetchTrendingRepositories();
 
         $upsertTrendingRepositories->handle($repositories);
+        $upsertDailyTrending->handle($repositories);
     }
 
     public function failed(\Throwable $exception): void

@@ -1,7 +1,9 @@
 <?php
 
+use App\Actions\UpsertDailyTrending;
 use App\Actions\UpsertTrendingRepositories;
 use App\Jobs\FetchTrendingRepositoriesJob;
+use App\Models\DailyTrending;
 use App\Models\TrendingRepository;
 use App\Services\GitHubService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -33,9 +35,14 @@ it('upserts repositories', function () {
             ],
         ]);
 
-    (new FetchTrendingRepositoriesJob)->handle(app(GitHubService::class), app(UpsertTrendingRepositories::class));
+    (new FetchTrendingRepositoriesJob)->handle(
+        app(GitHubService::class),
+        app(UpsertTrendingRepositories::class),
+        app(UpsertDailyTrending::class),
+    );
 
     expect(TrendingRepository::query()->count())->toBe(1);
+    expect(DailyTrending::query()->count())->toBe(1);
 });
 
 it('does not duplicate on rerun and updates stars', function () {
@@ -65,7 +72,11 @@ it('does not duplicate on rerun and updates stars', function () {
             ],
         ]);
 
-    (new FetchTrendingRepositoriesJob)->handle(app(GitHubService::class), app(UpsertTrendingRepositories::class));
+    (new FetchTrendingRepositoriesJob)->handle(
+        app(GitHubService::class),
+        app(UpsertTrendingRepositories::class),
+        app(UpsertDailyTrending::class),
+    );
 
     expect(TrendingRepository::query()->count())->toBe(1)
         ->and(TrendingRepository::query()->first()->stars_count)->toBe(99);
@@ -77,9 +88,57 @@ it('handles empty response gracefully', function () {
         ->once()
         ->andReturn([]);
 
-    (new FetchTrendingRepositoriesJob)->handle(app(GitHubService::class), app(UpsertTrendingRepositories::class));
+    (new FetchTrendingRepositoriesJob)->handle(
+        app(GitHubService::class),
+        app(UpsertTrendingRepositories::class),
+        app(UpsertDailyTrending::class),
+    );
 
     expect(TrendingRepository::query()->count())->toBe(0);
+    expect(DailyTrending::query()->count())->toBe(0);
+});
+
+it('does not duplicate daily_trending on rerun for same day', function () {
+    $payload = [
+        [
+            'github_id' => 123,
+            'name' => 'repo',
+            'full_name' => 'octocat/repo',
+            'owner' => 'octocat',
+            'description' => 'Example',
+            'language' => 'PHP',
+            'stars_count' => 10,
+            'forks_count' => 2,
+            'open_issues_count' => 1,
+            'html_url' => 'https://github.com/octocat/repo',
+            'github_created_at' => now()->subDay()->toISOString(),
+            'fetched_at' => now()->toISOString(),
+        ],
+    ];
+
+    mock(GitHubService::class)
+        ->shouldReceive('fetchTrendingRepositories')
+        ->once()
+        ->andReturn($payload);
+
+    (new FetchTrendingRepositoriesJob)->handle(
+        app(GitHubService::class),
+        app(UpsertTrendingRepositories::class),
+        app(UpsertDailyTrending::class),
+    );
+
+    mock(GitHubService::class)
+        ->shouldReceive('fetchTrendingRepositories')
+        ->once()
+        ->andReturn($payload);
+
+    (new FetchTrendingRepositoriesJob)->handle(
+        app(GitHubService::class),
+        app(UpsertTrendingRepositories::class),
+        app(UpsertDailyTrending::class),
+    );
+
+    expect(DailyTrending::query()->count())->toBe(1);
 });
 
 it('command dispatches the job', function () {
