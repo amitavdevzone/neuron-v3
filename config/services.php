@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'github' => [
+        'token' => env('GITHUB_TOKEN'),
+        'trending_days' => env('GITHUB_TRENDING_DAYS', 7),
+        'per_page' => env('GITHUB_TRENDING_PER_PAGE', 30),
+    ],
+
 ];
