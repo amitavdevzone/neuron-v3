@@ -41,4 +41,8 @@ return [
         'per_page' => env('GITHUB_TRENDING_PER_PAGE', 30),
     ],
 
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
+    ],
+
 ];
