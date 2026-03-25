@@ -2,32 +2,32 @@
   "version": 1,
   "skills": {
     "neuron-agent-builder": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "45d3bc1eafb68c38ad0a8bfbf7fef1626928457d0cc8580924f610ef26810bab"
     },
     "neuron-debugger": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "e2a9f517948358f77aea8e87ff0f7ed423e44a5391107241e82d2183e83bcff8"
     },
     "neuron-evaluation-engineer": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "9190a7d7441043c2feba422a003402f87b20ed43644faf72a1b128632411f493"
     },
     "neuron-rag-specialist": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "73aa11a4397162874db2905622eb3e01f9415bd104e9fbffe4358edf51aa6c1e"
     },
     "neuron-tool-creator": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "71dacce7ad04c42f5b473c7953a6b2809367a18ac9f4afb2d77748eccea969b7"
     },
     "neuron-workflow-architect": {
-      "source": "/Users/amitavroy/code/tutorials/neuron-v3/vendor/neuron-core/neuron-ai/skills",
+      "source": "/home/amitavroy/code/tutorial/neuron-v3/vendor/neuron-core/neuron-ai/skills",
       "sourceType": "local",
       "computedHash": "df39a4a033ce2559f8c5fb6b398b5551c844bdfe88d746325bc8592038287023"
     }
