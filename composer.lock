@@ -1233,16 +1233,16 @@
         },
         {
             "name": "inspector-apm/inspector-php",
-            "version": "3.16.15",
+            "version": "3.16.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inspector-apm/inspector-php.git",
-                "reference": "38e76f5f6883745094d641f86a09001a1d7b5eea"
+                "reference": "1ae543cc6953da0f68ed4ac810de36696e91438e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inspector-apm/inspector-php/zipball/38e76f5f6883745094d641f86a09001a1d7b5eea",
-                "reference": "38e76f5f6883745094d641f86a09001a1d7b5eea",
+                "url": "https://api.github.com/repos/inspector-apm/inspector-php/zipball/1ae543cc6953da0f68ed4ac810de36696e91438e",
+                "reference": "1ae543cc6953da0f68ed4ac810de36696e91438e",
                 "shasum": ""
             },
             "require": {
@@ -1289,9 +1289,9 @@
             ],
             "support": {
                 "issues": "https://github.com/inspector-apm/inspector-php/issues",
-                "source": "https://github.com/inspector-apm/inspector-php/tree/3.16.15"
+                "source": "https://github.com/inspector-apm/inspector-php/tree/3.16.16"
             },
-            "time": "2026-02-26T11:18:52+00:00"
+            "time": "2026-03-26T18:13:38+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -2756,16 +2756,16 @@
         },
         {
             "name": "neuron-core/neuron-ai",
-            "version": "3.2.11",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neuron-core/neuron-ai.git",
-                "reference": "d56213b85a7cd991e83bcc2f0fc35cdc8ccb8175"
+                "reference": "5979deeceec74a6fc9a1b969558ea21888430307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neuron-core/neuron-ai/zipball/d56213b85a7cd991e83bcc2f0fc35cdc8ccb8175",
-                "reference": "d56213b85a7cd991e83bcc2f0fc35cdc8ccb8175",
+                "url": "https://api.github.com/repos/neuron-core/neuron-ai/zipball/5979deeceec74a6fc9a1b969558ea21888430307",
+                "reference": "5979deeceec74a6fc9a1b969558ea21888430307",
                 "shasum": ""
             },
             "require": {
@@ -2816,7 +2816,7 @@
             "description": "The PHP Agentic Framework.",
             "support": {
                 "issues": "https://github.com/neuron-core/neuron-ai/issues",
-                "source": "https://github.com/neuron-core/neuron-ai/tree/3.2.11"
+                "source": "https://github.com/neuron-core/neuron-ai/tree/3.3.0"
             },
             "funding": [
                 {
@@ -2824,7 +2824,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-23T14:16:11+00:00"
+            "time": "2026-03-30T17:15:12+00:00"
         },
         {
             "name": "neuron-core/neuron-laravel",
@@ -6567,16 +6567,16 @@
     "packages-dev": [
         {
             "name": "brianium/paratest",
-            "version": "v7.19.2",
+            "version": "v7.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9"
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
-                "reference": "66e4f7910cecf67736bccf2b8bd53a2e3eb98bd9",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
+                "reference": "81c80677c9ec0ed4ef16b246167f11dec81a6e3d",
                 "shasum": ""
             },
             "require": {
@@ -6600,7 +6600,7 @@
                 "ext-pcntl": "*",
                 "ext-pcov": "*",
                 "ext-posix": "*",
-                "phpstan/phpstan": "^2.1.40",
+                "phpstan/phpstan": "^2.1.44",
                 "phpstan/phpstan-deprecation-rules": "^2.0.4",
                 "phpstan/phpstan-phpunit": "^2.0.16",
                 "phpstan/phpstan-strict-rules": "^2.0.10",
@@ -6644,7 +6644,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v7.19.2"
+                "source": "https://github.com/paratestphp/paratest/tree/v7.20.0"
             },
             "funding": [
                 {
@@ -6656,7 +6656,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2026-03-09T14:33:17+00:00"
+            "time": "2026-03-29T15:46:14+00:00"
         },
         {
             "name": "doctrine/deprecations",

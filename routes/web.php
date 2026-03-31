@@ -1,6 +1,6 @@
 <?php
 
-use App\Neuron\Workflows\BlogCreationWorkflow;
+use App\Neuron\Workflows\VoteAcceptWorkflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -25,7 +25,7 @@ Route::get('test', function () {
     $persistence = new EloquentPersistence(WorkflowInterruptModel::class);
     $state = new WorkflowState(['age' => 15]);
 
-    $handler = BlogCreationWorkflow::make(
+    $handler = VoteAcceptWorkflow::make(
         state: $state,
         persistence: $persistence,
     )->init();
@@ -106,7 +106,7 @@ Route::get('test/resume', function (Request $request) {
         actions: $resumeActions->all(),
     );
 
-    $finalState = BlogCreationWorkflow::make(
+    $finalState = VoteAcceptWorkflow::make(
         persistence: $persistence,
         resumeToken: $validated['resumeToken'],
     )->init($resumeRequest)->run();

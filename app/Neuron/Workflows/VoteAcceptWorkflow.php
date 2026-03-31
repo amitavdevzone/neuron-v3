@@ -9,7 +9,7 @@ use App\Neuron\Nodes\SecondNode;
 use NeuronAI\Workflow\Node;
 use NeuronAI\Workflow\Workflow;
 
-class BlogCreationWorkflow extends Workflow
+class VoteAcceptWorkflow extends Workflow
 {
     /**
      * Returns an array of nodes that make up the workflow.
