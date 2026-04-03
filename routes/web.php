@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use App\Neuron\Workflows\VoteAcceptWorkflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,12 @@ Route::inertia('/', 'welcome', [
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
+});
+
+Route::controller(TodoController::class)->group(function () {
+    Route::get('todos', 'index')->name('todos.index');
+    Route::post('todos', 'store')->name('todos.store');
+    Route::delete('todos/{todo}', 'destroy')->name('todos.destroy');
 });
 
 require __DIR__.'/settings.php';
