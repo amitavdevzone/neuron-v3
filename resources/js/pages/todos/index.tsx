@@ -4,7 +4,6 @@ import AppLayout from '@/layouts/app-layout';
 import { destroy, index, store } from '@/routes/todos';
 import type { BreadcrumbItem } from '@/types';
 import type { FormEvent } from 'react';
-import { useEffect, useState } from 'react';
 
 type TodoItem = {
     id: number | null;
@@ -28,11 +27,6 @@ export default function TodosPage({ todos }: Props) {
     const form = useForm({
         task: '',
     });
-    const [visibleTodos, setVisibleTodos] = useState<TodoItem[]>(todos);
-
-    useEffect(() => {
-        setVisibleTodos(todos);
-    }, [todos]);
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -43,34 +37,38 @@ export default function TodosPage({ todos }: Props) {
             return;
         }
 
-        const optimisticKey = Date.now();
+        const tempKey = Date.now();
 
-        setVisibleTodos((previousTodos) => [
-            {
-                id: null,
-                task: trimmedTask,
-                is_complete: false,
-                tempKey: optimisticKey,
-            },
-            ...previousTodos,
-        ]);
-        form.post(store.url(), {
-            preserveScroll: true,
-            onSuccess: () => {
-                form.reset();
-            },
-            onError: () => {
-                setVisibleTodos((previousTodos) =>
-                    previousTodos.filter((todo) => todo.tempKey !== optimisticKey),
-                );
-            },
-        });
+        form
+            .optimistic((pageProps) => ({
+                todos: [
+                    {
+                        id: null,
+                        task: trimmedTask,
+                        is_complete: false,
+                        tempKey,
+                    },
+                    ...(pageProps as Props).todos,
+                ],
+            }))
+            .post(store.url(), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    form.reset();
+                },
+            });
     };
 
     const removeTodo = (todoId: number) => {
-        router.delete(destroy.url(todoId), {
-            preserveScroll: true,
-        });
+        router
+            .optimistic((pageProps) => ({
+                todos: (pageProps as Props).todos.filter(
+                    (todo) => todo.id !== todoId,
+                ),
+            }))
+            .delete(destroy.url(todoId), {
+                preserveScroll: true,
+            });
     };
 
     return (
@@ -93,7 +91,7 @@ export default function TodosPage({ todos }: Props) {
                 </form>
 
                 <div className="space-y-2">
-                    {visibleTodos.map((todo) => (
+                    {todos.map((todo) => (
                         <div
                             key={todo.id ?? `optimistic-${todo.tempKey ?? todo.task}`}
                             className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm"
@@ -115,7 +113,7 @@ export default function TodosPage({ todos }: Props) {
                         </div>
                     ))}
 
-                    {visibleTodos.length === 0 ? (
+                    {todos.length === 0 ? (
                         <p className="text-sm text-muted-foreground">
                             No todos yet.
                         </p>
