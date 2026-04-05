@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TodoController;
 use App\Neuron\Workflows\VoteAcceptWorkflow;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ Route::inertia('/', 'welcome', [
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
+
+Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
 Route::controller(TodoController::class)->group(function () {
     Route::get('todos', 'index')->name('todos.index');

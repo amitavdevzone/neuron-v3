@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'reachme@amitavroy.com',
             'password' => 'Password@123',
         ]);
+
+        $this->call(OrderCatalogSeeder::class);
     }
 }
