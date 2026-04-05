@@ -2,14 +2,19 @@
     "mcpServers": {
         "laravel-boost": {
             "command": "php",
-            "args": ["artisan", "boost:mcp"]
+            "args": [
+                "artisan",
+                "boost:mcp"
+            ]
         },
         "neuron-ai-doc": {
             "url": "https://docs.neuron-ai.dev/~gitbook/mcp"
         },
         "herd": {
             "command": "php",
-            "args": ["/Applications/Herd.app/Contents/Resources/herd-mcp.phar"],
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
             "env": {
                 "SITE_PATH": "/Users/amitavroy/code/tutorials/neuron-v3"
             }

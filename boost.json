@@ -4,11 +4,12 @@
         "claude_code"
     ],
     "guidelines": true,
-    "herd_mcp": true,
     "mcp": true,
     "nightwatch_mcp": false,
     "packages": [
-        "laravel/fortify"
+        "laravel/fortify",
+        "neuron-core/neuron-laravel",
+        "fruitcake/laravel-debugbar"
     ],
     "sail": false,
     "skills": [
@@ -17,6 +18,15 @@
         "pest-testing",
         "inertia-react-development",
         "tailwindcss-development",
-        "fortify-development"
+        "fortify-development",
+        "neuron-agent-builder",
+        "neuron-debugger",
+        "neuron-evaluation-engineer",
+        "neuron-rag-specialist",
+        "neuron-structured-output",
+        "neuron-test-engineer",
+        "neuron-tool-creator",
+        "neuron-workflow-architect",
+        "debug-using-debugbar"
     ]
 }
