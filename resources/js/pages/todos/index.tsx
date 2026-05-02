@@ -39,24 +39,22 @@ export default function TodosPage({ todos }: Props) {
 
         const tempKey = Date.now();
 
-        form
-            .optimistic((pageProps) => ({
-                todos: [
-                    {
-                        id: null,
-                        task: trimmedTask,
-                        is_complete: false,
-                        tempKey,
-                    },
-                    ...(pageProps as Props).todos,
-                ],
-            }))
-            .post(store.url(), {
-                preserveScroll: true,
-                onSuccess: () => {
-                    form.reset();
+        form.optimistic((pageProps) => ({
+            todos: [
+                {
+                    id: null,
+                    task: trimmedTask,
+                    is_complete: false,
+                    tempKey,
                 },
-            });
+                ...(pageProps as Props).todos,
+            ],
+        })).post(store.url(), {
+            preserveScroll: true,
+            onSuccess: () => {
+                form.reset();
+            },
+        });
     };
 
     const removeTodo = (todoId: number) => {
@@ -80,20 +78,27 @@ export default function TodosPage({ todos }: Props) {
                     <Input
                         name="task"
                         value={form.data.task}
-                        onChange={(event) => form.setData('task', event.target.value)}
+                        onChange={(event) =>
+                            form.setData('task', event.target.value)
+                        }
                         placeholder="Add a todo and press Enter"
                         aria-label="Todo task"
                         disabled={form.processing}
                     />
                     {form.errors.task ? (
-                        <p className="mt-2 text-sm text-red-600">{form.errors.task}</p>
+                        <p className="mt-2 text-sm text-red-600">
+                            {form.errors.task}
+                        </p>
                     ) : null}
                 </form>
 
                 <div className="space-y-2">
                     {todos.map((todo) => (
                         <div
-                            key={todo.id ?? `optimistic-${todo.tempKey ?? todo.task}`}
+                            key={
+                                todo.id ??
+                                `optimistic-${todo.tempKey ?? todo.task}`
+                            }
                             className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm"
                         >
                             <span>{todo.task}</span>

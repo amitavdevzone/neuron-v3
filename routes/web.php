@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\UserRegistrationController;
 use App\Neuron\Workflows\VoteAcceptWorkflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+
+Route::post('tutorial/users', [UserRegistrationController::class, 'store'])->name('tutorial.users.store');
 
 Route::controller(TodoController::class)->group(function () {
     Route::get('todos', 'index')->name('todos.index');

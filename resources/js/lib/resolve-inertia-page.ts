@@ -9,5 +9,8 @@ const pages = import.meta.glob('../pages/**/*.tsx');
  * (Vite's `import.meta.glob` inference otherwise produces a nested-Promise union).
  */
 export function resolveInertiaPage(name: string): Promise<ResolvedComponent> {
-    return resolvePageComponent(`../pages/${name}.tsx`, pages) as Promise<ResolvedComponent>;
+    return resolvePageComponent(
+        `../pages/${name}.tsx`,
+        pages,
+    ) as Promise<ResolvedComponent>;
 }
