@@ -108,3 +108,6 @@ Step one: random user registration where we create a controller which has a requ
 After that the action class will raise an event which will be named UserRegistered. The action class will also set the password of every user to be the same email address.
 
 Next, we will have a listener for this event that was raised by the action class, and this listener should dispatch a job with a payload using pushRaw.
+
+Random user order:
+ random user order select user from a drop down and there will be one more field to add quantity which can be a numeric field and then there should be a button called order. Clicking on that order button should create a new order in the order stable with the user ID and quantity, and then and even should be raised, which is all created. Again, the order creation and the event being raised should be inside an action class.
