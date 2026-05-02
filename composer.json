@@ -11,23 +11,23 @@
     "require": {
         "php": "^8.3",
         "inertiajs/inertia-laravel": "^3.0.6",
-        "laravel/fortify": "^1.36.2",
-        "laravel/framework": "^13.5",
+        "laravel/fortify": "^1.37.0",
+        "laravel/framework": "^13.7",
         "laravel/tinker": "^3.0.2",
         "laravel/wayfinder": "^0.1.16",
-        "neuron-core/neuron-ai": "^3.3.8",
+        "neuron-core/neuron-ai": "^3.3.14",
         "neuron-core/neuron-laravel": "^1.1.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
-        "fruitcake/laravel-debugbar": "^4.2.6",
-        "laravel/boost": "^2.4.4",
+        "fruitcake/laravel-debugbar": "^4.2.8",
+        "laravel/boost": "^2.4.6",
         "laravel/pail": "^1.2.6",
-        "laravel/pint": "^1.29",
-        "laravel/sail": "^1.57",
+        "laravel/pint": "^1.29.1",
+        "laravel/sail": "^1.58",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.9.3",
-        "pestphp/pest": "^4.6.2",
+        "nunomaduro/collision": "^8.9.4",
+        "pestphp/pest": "^4.6.3",
         "pestphp/pest-plugin-laravel": "^4.1"
     },
     "autoload": {
