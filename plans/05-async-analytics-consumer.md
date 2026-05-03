@@ -111,3 +111,9 @@ Next, we will have a listener for this event that was raised by the action class
 
 Random user order:
  random user order select user from a drop down and there will be one more field to add quantity which can be a numeric field and then there should be a button called order. Clicking on that order button should create a new order in the order stable with the user ID and quantity, and then and even should be raised, which is all created. Again, the order creation and the event being raised should be inside an action class.
+
+ the front end should be a new page with route tutorial/demo-queue
+  in here, I would want a page with two columns, 50-50 percent with on the left side. There will be a form for user create. I should be able to add the email and the name, and then hit a button create to create the user the back and court is already present for this. The next thing that I would want to do is the right side of the page will be one more form, which is  Request for quote. In here, I would want a drop-down with the user list and an input field accepts numeric for quantity. And then when I hit a button request, it should execute me backend code. Remove these code from web.php:
+  Route::get('tutorial/quotes', 'index')->name('tutorial.quotes.index');
+  Route::post('tutorial/quotes', 'store')->name('tutorial.quotes.store');
+  And instead have the new route. And do delete the other files. But the form for the quote is exactly what i wanted so you can take that and then delete the files.

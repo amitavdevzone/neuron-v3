@@ -28,8 +28,8 @@ Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 Route::post('tutorial/users', [UserRegistrationController::class, 'store'])->name('tutorial.users.store');
 
 Route::controller(TutorialQuoteController::class)->group(function () {
-    Route::get('tutorial/quotes', 'index')->name('tutorial.quotes.index');
-    Route::post('tutorial/quotes', 'store')->name('tutorial.quotes.store');
+    Route::get('tutorial/demo-queue', 'index')->name('tutorial.demo-queue.index');
+    Route::post('tutorial/demo-queue', 'store')->name('tutorial.demo-queue.store');
 });
 
 Route::controller(TodoController::class)->group(function () {

@@ -26,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(QuoteCreated::class, SendQuoteCreatedToAnalytics::class);
-
         $this->configureDefaults();
     }
 

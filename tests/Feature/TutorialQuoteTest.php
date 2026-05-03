@@ -3,8 +3,31 @@
 use App\Actions\QuoteCreateAction;
 use App\Events\QuoteCreated;
 use App\Models\Product;
+use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
+use Inertia\Testing\AssertableInertia as Assert;
+
+test('the demo queue page displays users and quotes', function () {
+    $product = Product::factory()->create(['id' => QuoteCreateAction::DEFAULT_PRODUCT_ID]);
+    $user = User::factory()->create([
+        'name' => 'Ada Lovelace',
+        'email' => 'ada@example.test',
+    ]);
+
+    Quote::factory()
+        ->for($user)
+        ->for($product)
+        ->create(['qty' => 3]);
+
+    $this->get(route('tutorial.demo-queue.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('tutorial/demo-queue')
+            ->where('users.0.name', 'Ada Lovelace')
+            ->where('quotes.0.qty', 3),
+        );
+});
 
 test('a tutorial quote can be requested for a user', function () {
     $product = Product::factory()->create(['id' => QuoteCreateAction::DEFAULT_PRODUCT_ID]);
@@ -13,13 +36,13 @@ test('a tutorial quote can be requested for a user', function () {
 
     Event::fake();
 
-    $response = $this->post(route('tutorial.quotes.store'), [
+    $response = $this->post(route('tutorial.demo-queue.store'), [
         'user_id' => $user->id,
         'product_id' => $otherProduct->id,
         'qty' => 4,
     ]);
 
-    $response->assertRedirect(route('tutorial.quotes.index'));
+    $response->assertRedirect(route('tutorial.demo-queue.index'));
 
     $this->assertDatabaseHas('quotes', [
         'user_id' => $user->id,
@@ -35,9 +58,9 @@ test('a tutorial quote can be requested for a user', function () {
 });
 
 test('tutorial quote request validates required fields', function (array $payload, string $field) {
-    $this->from(route('tutorial.quotes.index'))
-        ->post(route('tutorial.quotes.store'), $payload)
-        ->assertRedirect(route('tutorial.quotes.index'))
+    $this->from(route('tutorial.demo-queue.index'))
+        ->post(route('tutorial.demo-queue.store'), $payload)
+        ->assertRedirect(route('tutorial.demo-queue.index'))
         ->assertSessionHasErrors($field);
 })->with([
     'missing user' => [['qty' => 1], 'user_id'],

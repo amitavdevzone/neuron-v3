@@ -14,7 +14,7 @@ class TutorialQuoteController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('tutorial/quotes', [
+        return Inertia::render('tutorial/demo-queue', [
             'users' => User::query()
                 ->orderBy('name', 'asc')
                 ->get(['id', 'name', 'email']),
@@ -36,6 +36,6 @@ class TutorialQuoteController extends Controller
             (int) $request->validated('qty'),
         );
 
-        return to_route('tutorial.quotes.index');
+        return to_route('tutorial.demo-queue.index');
     }
 }
