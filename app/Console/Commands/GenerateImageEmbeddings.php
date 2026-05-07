@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\AlbumImage;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
@@ -51,7 +52,23 @@ class GenerateImageEmbeddings extends Command
         $rows->each(function ($row) {
             $this->comment("Encoding image {$row['image_path']}: {$row['description']}");
             $embedding = $this->getEmbedding($row['image_path'], $row['description']);
-            logger()->info("Embedding for image {$row['image_path']}", $embedding);
+
+            if ($embedding === null) {
+                return;
+            }
+
+            AlbumImage::updateOrCreate(
+                ['image_path' => $row['image_path']],
+                [
+                    'description' => $row['description'],
+                    'embedding' => $embedding,
+                ],
+            );
+
+            logger()->info("Embedding for image {$row['image_path']}", [
+                'image_path' => $row['image_path'],
+                'dimentions' => count($embedding),
+            ]);
         });
     }
 
